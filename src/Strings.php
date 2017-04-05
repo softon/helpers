@@ -289,6 +289,16 @@ class Strings
     return substr($hash, 0, $length);
   }
 
+  /**
+   * Generate random string based on pattern. X for capital letters, 
+   * x for small letters and 0 for numbers. ! for capital letters or numbers
+   * ? for small letters or numbers, * for capital, small letter or numbers
+   *
+   * @param string $pattern
+   *
+   * @return string
+   */
+
   public static function pattern($pattern = 'XX00-XX00-00XX-00XX-XXXX')
   {
     $return = '';
