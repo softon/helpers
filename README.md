@@ -62,28 +62,80 @@ Helper functions related to string manipulations. <br>
       Strings::pattern("XX000XX-0X");					// HK847GW-6F
 
       /* 15) Verify string to comply to a pattern  */
-      Strings::verifyPattern("XX00xx-***","DEF89gg-7y7");			// hi_There  -->   hi There
+      Strings::verifyPattern("XX00xx-***","DEF89gg-7y7");	// hi_There  -->   hi There
 
-      /* 11) Find the common start between two strings */
-      Strings::commonPrefix("hi_There");			// hi_There  -->   hi There
+      /* 16) Take a short extract from a string */
+      Strings::excerpt("What is your name?",13,"...");		// What is your...
 
-      /* 11) Find the common start between two strings */
-      Strings::commonPrefix("hi_There");			// hi_There  -->   hi There
+      /* 17) Return substring between other strings (or string) */
+      Strings::between("<head>Hello World</head>","<head>","</head>");		// Hello World
 
-      /* 11) Find the common start between two strings */
-      Strings::commonPrefix("hi_There");			// hi_There  -->   hi There
+      /* 18) Concatinate multiple values to a single string */
+      Strings::concat("Hello"," World");			// Hello World
+      Strings::concat("The"," Hello"," World");		// The Hello World
 
-      /* 11) Find the common start between two strings */
-      Strings::commonPrefix("hi_There");			// hi_There  -->   hi There
+      /* 19) Escape HTML String */
+      Strings::escape("<head>Hello World</head>");		// &lt;head&gt;Hello World&lt;/head&gt;
 
-      /* 11) Find the common start between two strings */
-      Strings::commonPrefix("hi_There");			// hi_There  -->   hi There
+      /* 20) Assert that passed data can be converted to string */
+      Strings::stringable("hi_There");			// no exception is thrown
+	  Strings::stringable(["hi there"]);		// InvalidArgumentException
 
-      /* 11) Find the common start between two strings */
-      Strings::commonPrefix("hi_There");			// hi_There  -->   hi There
+      /* 21) Split a corpus of text into lines. This function splits on "\n", "\r\n", or  mixture of any of them */
+      Strings::splitLines("Hello 
+      World");									// array("Hello","World")
 
+	  /* 22) Explode a string, filling the remainder with provided defaults */
+      Strings::explode("|","Hi|Hello|Ola");		// array("Hi","Hello","Ola")
 
+      /* 23) Retrieve the final part of a string, after the first instance of the needle has been located */
+      Strings::offset("The Hello World","The ");		// Hello World
 
+      /* 24) Strip off a specific string from the start of another, if an exact match 
+      		 is not found, the original string (haystack) will be returned */
+      Strings::ltrim("The Hello World","The ");		// Hello World
 
+      /* 25) Trim non null strings */
+      Strings::ntrim("  Hello World  ");		// Hello World
 
+      /* 26) Check a string contains another string */
+      Strings::contains("Hello World","World");		// true
+
+      /* 27) Check a string contains one of the provided needles */
+      Strings::containsAny("One Two Three Four",array("One","Six"));		// true
+
+      /* 28) Check a string ends with one of the provided needles */
+      Strings::endsWithAny("One Two Three Four",array("Four","Six"));		// true
+
+      /* 29) Check a string ends with a specific string */
+      Strings::endsWith("One Two Three Four","Four");		// true
+
+      /* 30) Check a string starts with one of the provided needles */
+      Strings::startsWithAny("One Two Three Four",array("One","Six"));		// true
+
+      /* 31) Check a string starts with a specific string */
+      Strings::startsWith("One Two Three Four","One");		// true
+
+      /* 32) Short cut for json_encode with JSON_PRETTY_PRINT */
+      Strings::jsonPretty(array("One","Two"));		
+```
+
+<h2>Numbers Class</h2>
+
+Helper functions related to Number manipulations. <br>
+<pre><code> use Packaged\Helpers\Numbers;  </code></pre>
+
+```php 
+      /* 1) Return if a value is between two values */
+      Numbers::between(6,1,3);			// false
+      Numbers::between(6,3,8);			// true
+
+      /* 2) Number format integers only, any other string will be returned as is */
+      Numbers::format(12345.67,4);		// 12,345.6700
+
+      /* 3) Number format with suffix, for making large numbers human readable */
+      Numbers::humanize(10000);			// 10k
+
+      /* 4) Return number's ordinal suffix */
+      Numbers::ordinal(23);				// rd
 ```

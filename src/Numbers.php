@@ -85,4 +85,54 @@ class Numbers
       : ceil($number * 10) / 10
     ) . $suffixes[$suffixIndex];
   }
+
+  /**
+   *
+   * Return number's ordinal suffix
+   *
+   * @param int $number
+   *
+   * @return string
+   *
+   */
+  public static function ordinal($number)
+  {
+
+      /*** check for 11, 12, 13 ***/
+      if ($number % 100 > 10 && $number %100 < 14)
+      {
+          $os = 'th';
+      }
+      /*** check if number is zero ***/
+      elseif($number == 0)
+      {
+          $os = '';
+      }
+      else
+      {
+          /*** get the last digit ***/
+          $last = substr($number, -1, 1);
+
+          switch($last)
+          {
+              case "1":
+              $os = 'st';
+              break;
+
+              case "2":
+              $os = 'nd';
+              break;
+
+              case "3":
+              $os = 'rd';
+              break;
+
+              default:
+              $os = 'th';
+          }
+      }
+
+      return $os;
+  }
+
 }
